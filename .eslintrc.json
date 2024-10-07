@@ -1,0 +1,25 @@
+{
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es2021": true
+    },
+    "extends": "airbnb-base",
+    "overrides": [],
+    "parserOptions": {
+        "ecmaVersion": "latest"
+    },
+    "rules": {
+        "linebreak-style": "off",
+        "arrow-parens": 1,
+        "indent": ["error", 4],
+        "quotes": ["error", "double"],
+        "no-unused-vars": ["error", { "argsIgnorePattern": "^(next|req|res)$"}],
+        "consistent-return": 0,
+        "class-methods-use-this": 0,
+        "global-require": 0,
+        "no-underscore-dangle": 0,
+        "prefer-destructuring": 0,
+        "no-plusplus": 0
+    }
+}

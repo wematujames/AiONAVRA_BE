@@ -1,0 +1,164 @@
+[
+    {
+        "_id":  "667941cf70d74498c63ce9d3",
+        "name": "View Dashboard Summary",
+        "slug": "view_dashboard_summary",
+        "description": "View transaction summary",
+        "routes": ["/api/v1/platform/summary/transactionsoverall"],
+        "method": "GET",
+        "active": true
+    },
+    {
+        "_id":  "667941cf70d74498c63ce9d4",
+        "name": "Collections Summary",
+        "slug": "view_coltxns_summary",
+        "description": "View collection txns summary",
+        "routes": ["/api/v1/platform/summary/collectiontransactionstats"],
+        "method": "GET",
+        "active": true
+    },
+    {
+        "_id":  "667941cf70d74498c63ce9d5",
+        "name": "Disbursements Summary",
+        "slug": "view_distxns_summary",
+        "description": "View Disbursement Txns summary",
+        "routes": ["/api/v1/platform/summary/disbursementtransactionstats"],
+        "method": "GET",
+        "active": true
+    },
+
+    {
+        "_id":  "66793d8a48822cd23b94daa3",
+        "name": "View Transactions",
+        "slug": "view_transactions",
+        "description": "View transaction details",
+        "routes": [
+          "/api/v1/platform/transactions/",
+          "/api/v1/platform/transactions/:id"
+        ],
+        "method": "GET",
+        "active": true
+    },
+
+    {
+        "_id": "64c7d4aa8cbeb34dc62b5a01",
+        "name": "View Direct Debit Mandates",
+        "slug": "view_direct_debit",
+        "description": "View direct debit mandate records",
+        "routes": ["/api/v1/platform/directdebit/mandates", "/api/v1/platform/directdebit/mandates/:id"],
+        "method": "GET",
+        "active": true
+    },
+    {
+        "_id": "64c7d4aa8cbeb34dc62b5a02",
+        "name": "Update Direct Debit Mandate",
+        "slug": "update_direct_debit",
+        "description": "Modify direct debit mandate records",
+        "routes": ["/api/v1/platform/directdebit/mandates/:id"],
+        "method": "PUT",
+        "active": true
+    },
+
+    {
+        "_id": "6648d28f4411151ecc36f3c6",
+        "name": "View Organization Balances",
+        "slug": "view_org_balances",
+        "description": "View organization balances",
+        "routes": ["/api/v1/platform/organization/balances"],
+        "method": "GET",
+        "active": true
+    },
+
+    {
+        "_id": "64c7d4aa8cbeb34dc62b59fe",
+        "name": "Merchants",
+        "slug": "create_merchants",
+        "description": "Create new service extenstions or routes",
+        "routes": ["/api/v1/platform/merchants/"],
+        "method": "POST",
+        "active": true
+    },
+    {
+        "_id": "64c7d4aa8cbeb34dc62b59ff",
+        "name": "View Merchants",
+        "slug": "view_merchants",
+        "description": "View all merchants in the system",
+        "routes": ["/api/v1/platform/merchants/", "/api/v1/platform/merchants/:id"],
+        "method": "GET",
+        "active": true
+    },
+    {
+        "_id": "64c7d4aa8cbeb34dc62b5a00",
+        "name": "Update Merchant Details",
+        "slug": "update_merchant",
+        "description": "Modify merchant details",
+        "routes": ["/api/v1/platform/merchants/:merchantId"],
+        "method": "PUT",
+        "active": true
+    },
+
+    {
+        "_id": "653aa38f270ed635145bfd04",
+        "name": "Create Users",
+        "slug": "create_users",
+        "description": "Create new platform users",
+        "routes": ["/api/v1/platform/users/"],
+        "method": "POST",
+        "active": true
+    },
+    {
+        "_id": "6531ba56efe3ec22658f8d6c",
+        "name": "View Users",
+        "slug": "view_users",
+        "description": "View user details in the system",
+        "routes": ["/api/v1/platform/users/", "/api/v1/platform/users/:id"],
+        "method": "GET",
+        "active": true
+    },
+    {
+        "_id": "64c7d4aa8cbeb34dc62b5a04",
+        "name": "Update Users",
+        "slug": "update_users",
+        "description": "Update user details in the system",
+        "routes": ["/api/v1/platform/users/:id"],
+        "method": "PUT",
+        "active": true
+    },
+
+    {
+        "_id": "64c7d4aa8cbeb34dc62b5a07",
+        "name": "View Permissions",
+        "slug": "view_permissions",
+        "description": "View all user permissions in the system",
+        "routes": ["/api/v1/platform/permissions/:id", "/api/v1/platform/permissions/"],
+        "method": "GET",
+        "active": true
+    },
+    {
+        "_id": "64c7d4aa8cbeb34dc62b5a08",
+        "name": "Update Permissions",
+        "slug": "update_permissions",
+        "description": "Update user permisions information in the system",
+        "routes": ["/api/v1/permissions/:id"],
+        "method": "PUT",
+        "active": true
+    },
+    {
+        "_id": "669765af2cad7ed8a7db7fed",
+        "name": "Grant User Permissions",
+        "slug": "grant_permissions",
+        "description": "Grant other users permission(s) on the platform",
+        "routes": ["/api/v1/platform/permissions/grant"],
+        "method": "PUT",
+        "active": true
+    },
+    {
+        "_id": "669bb4892cad7ed8a7db8099",
+        "name": "Configure Merchant",
+        "slug": "config_merchant",
+        "description": "Configure merchant transaction privelleges",
+        "routes": ["/api/v1/platform/merchantconfigs/:configId"],
+        "method": "PUT",
+        "active": true
+    }
+]

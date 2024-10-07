@@ -1,0 +1,38 @@
+// {
+//     amount: '0.01',
+//     currency: 'GHS',
+//     financialTransactionId: '39159431728',
+//     externalId: '664fb93048a84097f2e1c8d5',
+//     payee: { partyIdType: 'MSISDN', partyId: '233554268378' },
+//     payeeNote: 'Nerasol',
+//     status: 'SUCCESSFUL'
+// }
+
+db.users.updateOne(
+  { _id: ObjectId("669000bc36e214467e617fe6") },
+  {
+    $set: {
+      permissions: [
+        "667941cf70d74498c63ce9d3",
+        "667941cf70d74498c63ce9d4",
+        "667941cf70d74498c63ce9d5",
+        "66793d8a48822cd23b94daa3",
+        "64c7d4aa8cbeb34dc62b5a01",
+        "64c7d4aa8cbeb34dc62b5a02",
+        "6648d28f4411151ecc36f3c6",
+        "64c7d4aa8cbeb34dc62b59fe",
+        "64c7d4aa8cbeb34dc62b59ff",
+        "64c7d4aa8cbeb34dc62b5a00",
+        "653aa38f270ed635145bfd04",
+        "6531ba56efe3ec22658f8d6c",
+        "64c7d4aa8cbeb34dc62b5a04",
+        "64c7d4aa8cbeb34dc62b5a07",
+        "64c7d4aa8cbeb34dc62b5a08",
+        "64c7d4aa8cbeb34dc62b5a05",
+        "64c7d4aa8cbeb34dc62b5a03"
+      ]
+    }
+  }
+);
+
+

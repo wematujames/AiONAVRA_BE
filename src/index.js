@@ -32,6 +32,6 @@ app.use("/api/v1", require("./v1/routes"));
 
 app.set("port", Number(application.port));
 app.listen(app.get("port") || application.port, () => {
-    console.log("apprunning");
+    console.log("app running");
     // logger.info(`Gh running on ${application.port} in ${application.env} mode!`);
 });

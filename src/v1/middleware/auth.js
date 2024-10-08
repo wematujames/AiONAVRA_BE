@@ -1,10 +1,9 @@
 const asyncHandler = require("./asyncHandler");
 const { ErrorResponse } = require("../utils");
-const authService = require("../features/auth/authService");
+const visitorAuthService = require("../features/visitorAuth/visitorAuthService");
 const revokedTokenService = require("../features/auth/revokedTokenService");
 
 module.exports = {
-    /* Platform user route protection */
     protect: asyncHandler(async (req, res, next) => {
         let token;
 
@@ -20,23 +19,19 @@ module.exports = {
         if (isRevoked) return next(new ErrorResponse("Not authorized", 401));
 
         try {
-            const decoded = await authService.verifyToken(token);
+            const decoded = await visitorAuthService.verifyToken(token);
 
             if (!decoded.id) {
                 return next(new ErrorResponse("Unable to identify merchant", 400));
             }
 
-            if (decoded.type !== "platformAuth") {
+            if (decoded.type !== "Visitor") {
                 return next(new ErrorResponse("Invalid token provided", 403));
             }
 
-            const user = await authService.findById(decoded.id, ["permissions", "person"]);
+            const user = await visitorAuthService.findById(decoded.id);
 
             if (!user) return next(new ErrorResponse("Not authorized", 401));
-
-            if (!user.active) return next(new ErrorResponse("User is not active. Please contact admin."));
-
-            if (user.accountLock.active) return next(new ErrorResponse("Account locked. Please contact admin."));
 
             req.user = user;
 

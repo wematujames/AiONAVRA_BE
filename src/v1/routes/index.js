@@ -1,6 +1,7 @@
 const router = require("express").Router();
 
 router.use("/auth", require("../features/auth").authRouter);
+router.use("/visitorauth", require("../features/visitorAuth").visitorAuthRouter);
 router.use("/userss", require("../features/users").userRouter);
 router.use("/notices", require("../features/notices").noticeRouter);
 router.use("/feedbacks", require("../features/feedbacks").feedbackRouter);

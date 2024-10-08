@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
+const { visitorMethods } = require("./methods");
+const { visitorStatics } = require("./statics");
 
-const userSchema = new mongoose.Schema({
+const visitorSchema = new mongoose.Schema({
     id: {
         type: mongoose.Schema.Types.ObjectId,
         default() { return this._id; },
@@ -8,18 +10,17 @@ const userSchema = new mongoose.Schema({
     fName: {
         type: String,
         trim: true,
-        required: true,
+        default: "",
     },
     lName: {
         type: String,
         trim: true,
-        required: true,
+        default: "",
     },
     email: {
         type: String,
         trim: true,
-        unique: true,
-        required: true,
+        default: "",
     },
     phone: {
         type: String,
@@ -27,9 +28,12 @@ const userSchema = new mongoose.Schema({
         unique: true,
         required: true,
     },
-    phoneVerified: {
-        type: Boolean,
-        default: false,
+    otpCode: {
+        type: {
+            code: String,
+            expires: Date,
+        },
+        default: {},
     },
     userType: {
         type: String,
@@ -44,7 +48,11 @@ const userSchema = new mongoose.Schema({
         type: Date,
         default: Date.now,
     },
-}, { timestamps: true });
+}, {
+    methods: visitorMethods,
+    statics: visitorStatics,
+    timestamps: true,
+});
 
 // eslint-disable-next-line new-cap
-module.exports = new mongoose.model("User", userSchema);
+module.exports = new mongoose.model("Visitor", visitorSchema);

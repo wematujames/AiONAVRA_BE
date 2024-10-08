@@ -24,7 +24,7 @@ module.exports = {
 
         const otpCode = await visitor.genOTP();
 
-        await this.dispatchOtp(visitor.phone, otpCode);
+        this.dispatchOtp(visitor.phone, otpCode);
 
         return { isNew };
     },
@@ -34,17 +34,18 @@ module.exports = {
      * @returns {object} token, cookieOptions and success login succes msg
      */
     async login2fa(phone, otpCode) {
-        const visitor = await Visitor.findOne({ phone, otpCode });
+        const visitor = await Visitor.findOne({ phone, "otpCode.code": otpCode });
 
         if (!visitor) throw new ErrorResponse("Invalid/expired login token", 400);
 
-        const isValidOtp = await visitor.isValidOtpCode(otpCode);
+        const isValidOtp = await visitor.isValidOTP(otpCode);
 
         if (!isValidOtp) throw new ErrorResponse("Expired/invalid login token", 400);
 
         const jwToken = await visitor.getSignedJwtToken({ type: "Visitor" });
 
-        visitor.otpCode = undefined;
+        visitor["otpCode.code"] = undefined;
+        visitor["otpCode.expires"] = undefined;
         await visitor.save();
 
         return { token: jwToken };
@@ -71,7 +72,7 @@ module.exports = {
      * @returns {object} token, cookieOptions and success login succes msg
      */
     async dispatchOtp(phone, otpCode) {
-        return smsQueue.dispatch({
+        await smsQueue.dispatch({
             to: phone,
             message: `Your OTP code is: ${otpCode}. Expires in 5 minutes.`,
         });

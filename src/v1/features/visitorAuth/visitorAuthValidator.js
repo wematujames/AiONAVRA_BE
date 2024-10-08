@@ -10,23 +10,18 @@ module.exports = {
     }),
 
     login: checkSchema({
-        email: {
+        phone: {
             trim: true,
-            isEmail: { bail: true },
-        },
-        password: {
-            notEmpty: { bail: true },
-            errorMessage: "Password must not be empty",
+            isMobilePhone: { bail: true },
         },
     }),
 
     login2fa: checkSchema({
-        loginToken: {
-            in: ["body"],
+        phone: {
             trim: true,
-            notEmpty: { bail: true },
+            isMobilePhone: { bail: true },
         },
-        verificationCode: {
+        otpCode: {
             in: ["body"],
             trim: true,
             notEmpty: { bail: true },

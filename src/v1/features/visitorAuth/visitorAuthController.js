@@ -1,8 +1,17 @@
-const { authService } = require("./visitorAuthService");
+const authService = require("./visitorAuthService");
 const { asyncHandler } = require("../../middleware");
 const { SuccessResponse } = require("../../utils");
 
 module.exports = {
+
+    // @desc            //login user
+    // @route           //POST /api/auth/login
+    // @access          //Public
+    login: asyncHandler(async (req, res, next) => {
+        const data = await authService.login(req.body.phone);
+
+        return res.json(new SuccessResponse("Success", data));
+    }),
 
     // @desc            //login user
     // @route           //POST /api/auth/login
@@ -16,17 +25,8 @@ module.exports = {
     // @desc            //login user
     // @route           //POST /api/auth/login
     // @access          //Public
-    login: asyncHandler(async (req, res, next) => {
-        const data = await authService.login(req.body);
-
-        return res.json(new SuccessResponse("Success", data));
-    }),
-
-    // @desc            //login user
-    // @route           //POST /api/auth/login
-    // @access          //Public
     login2fa: asyncHandler(async (req, res, next) => {
-        const data = await authService.login2fa(req.body);
+        const data = await authService.login2fa(req.body.phone, req.body.otpCode);
 
         return res.json(new SuccessResponse("Logged In", data));
     }),

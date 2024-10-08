@@ -11,6 +11,7 @@ module.exports = {
     Account: require("./Account"),
     Transaction: require("./Transaction"),
     DirectDebitMandate: require("./DirectDebitMandate"),
+    Visitor: require("./Visitor"),
 
     ExternalTransaction: require("./ExternalTransaction"),
 };

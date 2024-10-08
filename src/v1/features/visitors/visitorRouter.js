@@ -1,7 +1,7 @@
 const router = require("express").Router();
-const usersController = require("./userController");
+const visitorController = require("./visitorController");
 const { auth } = require("../../middleware");
-const userValidator = require("./userValidator");
+const userValidator = require("./visitorValidator");
 const validator = require("../common/validate");
 const generalValidator = require("../common/generalValidations");
 
@@ -10,13 +10,13 @@ router
     .get(
         auth.protect,
         // auth.authorize,
-        usersController.advancedResult,
+        visitorController.advancedResult,
     )
     .post(
         auth.protect,
         // auth.authorize,
         validator.validate(userValidator.create),
-        usersController.create,
+        visitorController.create,
     );
 
 router
@@ -25,13 +25,13 @@ router
         auth.protect,
         // auth.authorize,
         validator.validate(generalValidator.requireId),
-        usersController.findById,
+        visitorController.findById,
     )
     .put(
         auth.protect,
         // auth.authorize,
         validator.validate(userValidator.update),
-        usersController.updateById,
+        visitorController.updateById,
     );
 
 module.exports = router;

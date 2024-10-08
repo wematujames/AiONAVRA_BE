@@ -1,6 +1,7 @@
 const asyncHandler = require("./asyncHandler");
 const { ErrorResponse } = require("../utils");
-const { authService, revokedTokenService } = require("../features/auth");
+const authService = require("../features/auth/authService");
+const revokedTokenService = require("../features/auth/revokedTokenService");
 
 module.exports = {
     /* Platform user route protection */

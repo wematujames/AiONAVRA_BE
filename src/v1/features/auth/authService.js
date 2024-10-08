@@ -10,7 +10,7 @@ const emailQueue = require("../../queues/emailQueue");
 const baseService = require("../common/baseService");
 const { frontEnd } = require("../../config/app");
 const {
-    User, RevokedToken, Person, Token,
+    User, RevokedToken, Token,
 } = require("../../../models");
 
 module.exports = {
@@ -190,21 +190,13 @@ module.exports = {
 
         if (!isValidPassword) throw new ErrorResponse("Invalid password", 400);
 
-        const person = await Person.findById(user.person);
-
-        Object.keys(data).forEach((key) => {
-            person[key] = data[key];
-        });
-
         Object.keys(data || {}).forEach((key) => {
             user[key] = data[key];
         });
 
         await user.save();
 
-        await person?.save();
-
-        return { person, ...user };
+        return user;
     },
 
     /**
@@ -231,7 +223,7 @@ module.exports = {
             user.email,
             "Verify your new email address",
             {
-                name: `${user.person?.fName} + ${user.person?.lName}`,
+                name: `${user.fName} + ${user.lName}`,
                 verifyEmailUrl: `${frontEnd.adminVerifyEmailUrl}?token=${verifyEmailToken}`,
             },
             "user_email_verification",
@@ -340,7 +332,7 @@ module.exports = {
      * @param {string} email User's email address
      */
     async forgotPassword(email) {
-        const user = await User.findOne({ email }).populate("person");
+        const user = await User.findOne({ email });
 
         if (!user) throw new ErrorResponse("User email provided does not exist", 404);
 
@@ -350,7 +342,7 @@ module.exports = {
             email,
             "Password Reset Instructions",
             {
-                name: `${user.person?.fName} ${user.person?.lName}`,
+                name: `${user.fName} ${user.lName}`,
                 tokenURL: `${frontEnd.adminPasswordResetUrl}?token=${passResetToken}`,
             },
             "user_password_reset",

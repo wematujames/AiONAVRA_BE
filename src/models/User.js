@@ -9,6 +9,20 @@ const userSchema = new mongoose.Schema(
             type: mongoose.Schema.Types.ObjectId,
             default() { return this._id; },
         },
+        title: {
+            type: String,
+            trim: true,
+        },
+        fName: {
+            type: String,
+            trim: true,
+            required: true,
+        },
+        lName: {
+            type: String,
+            trim: true,
+            required: true,
+        },
         email: {
             type: String,
             trim: true,
@@ -88,9 +102,10 @@ const userSchema = new mongoose.Schema(
             ref: "Permission",
             default: [],
         },
-        person: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Person",
+        userType: {
+            type: String,
+            enum: ["Visitor", "Employee", "Admin"],
+            required: true,
         },
         createdBy: {
             type: mongoose.Schema.Types.ObjectId,

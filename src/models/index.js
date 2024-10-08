@@ -1,17 +1,11 @@
 module.exports = {
-    Person: require("./Person"),
     User: require("./User"),
-    Permission: require("./Permission"),
-    Policy: require("./Policy"),
+    Visitor: require("./Visitor"),
     Token: require("./Token"),
     RevokedToken: require("./RevokedToken"),
 
-    Merchant: require("./Merchant"),
-    MerchantConfig: require("./MerchantConfig"),
-    Account: require("./Account"),
-    Transaction: require("./Transaction"),
-    DirectDebitMandate: require("./DirectDebitMandate"),
-    Visitor: require("./Visitor"),
-
-    ExternalTransaction: require("./ExternalTransaction"),
+    Route: require("./Route"),
+    Notice: require("./Notice"),
+    Feedback: require("./Feedback"),
+    Appoinment: require("./Appointment"),
 };

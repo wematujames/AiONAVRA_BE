@@ -1,13 +1,18 @@
 {
     "_id": "653aa38f270ed635145bfd04",
-    "username": "administrator",
+    "fName": "administrator",
+    "lName": "administrator",
     "email": "jwematu@nerasolgh.com",
     "emailVerified": true,
     "phone": "233554268378",
     "phoneVerified": true,
     "password": "@nerau$$Dadmin123",
+    "userType": "Admin",
     "active": true,
-    "person": "6531ba56efe3ec22658f8d6c",
-    "tokens": "66964c1942fa2c9bf4876dbe"
+    "tokens": "66964c1942fa2c9bf4876dbe",
+    "employeeId":"",
+    "inOffice":"",
+    "office":"",
+    "organization": ""
 }
 

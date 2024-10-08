@@ -1,8 +1,9 @@
 const mongoose = require("mongoose");
-const { personMethods } = require("./methods");
-const { personStatics } = require("./statics");
+// const { merchantMethods } = require("./methods");
+// const { merchantHooks } = require("./hooks");
+// const { merchantStatics } = require("./statics");
 
-const personSchema = new mongoose.Schema(
+const noticeSchema = new mongoose.Schema(
     {
         id: {
             type: mongoose.Schema.Types.ObjectId,
@@ -10,17 +11,21 @@ const personSchema = new mongoose.Schema(
         },
         title: {
             type: String,
-            trim: true,
+            required: true,
         },
-        fName: {
+        content: {
             type: String,
             trim: true,
             required: true,
         },
-        lName: {
+        priority: {
             type: String,
             trim: true,
-            required: true,
+            default: "General",
+        },
+        attachments: {
+            type: [String],
+            default: [],
         },
         createdBy: {
             type: mongoose.Schema.Types.ObjectId,
@@ -40,11 +45,13 @@ const personSchema = new mongoose.Schema(
         },
     },
     {
-        methods: personMethods,
-        statics: personStatics,
+        // methods: merchantMethods,
+        // statics: merchantStatics,
         timestamps: true,
     },
 );
 
+// noticeSchema.pre("save", merchantHooks.preSaveActions);
+
 // eslint-disable-next-line new-cap
-module.exports = new mongoose.model("Person", personSchema);
+module.exports = new mongoose.model("Notice", noticeSchema);

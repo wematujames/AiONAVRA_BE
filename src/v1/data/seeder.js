@@ -1,24 +1,18 @@
 const fs = require("fs");
 const path = require("path");
 const { logger } = require("../utils");
-const { User, Permission, Token } = require("../../models");
+const { User, Token } = require("../../models");
 const connectDB = require("../../config/connectDB");
 
 connectDB();
 
 const user = JSON.parse(fs.readFileSync(path.join(__dirname, "/user.json")));
 const token = JSON.parse(fs.readFileSync(path.join(__dirname, "/token.json")));
-const permissions = JSON.parse(fs.readFileSync(path.join(__dirname, "/permissions.json")));
 
 /* Import seeding data => `node seeder -i` */
 const importData = async () => {
-    await Permission.create(permissions);
     await Token.create(token);
     await User.create(user);
-
-    await User.findByIdAndUpdate("653aa38f270ed635145bfd04", {
-        permissions: permissions.map((perm) => perm._id),
-    });
 
     logger.info("Successfully imported seed data");
     process.exit(1);
@@ -28,7 +22,6 @@ const importData = async () => {
 const deleteData = async () => {
     await User.findByIdAndDelete("653aa38f270ed635145bfd04");
     await Token.findByIdAndDelete("66964c1942fa2c9bf4876dbe");
-    await Permission.deleteMany({});
 
     logger.info("Successfully deleted seed data");
     process.exit(1);

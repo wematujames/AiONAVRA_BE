@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { auth } = require("../../middleware");
+const { visitorAuth } = require("../../middleware");
 const visitorAuthController = require("./visitorAuthController");
 const visitorAuthValidator = require("./visitorAuthValidator");
 const validator = require("../common/validate");
@@ -25,18 +25,18 @@ router.get(
 );
 router.get(
     "/profile",
-    auth.protect,
+    visitorAuth.protect,
     visitorAuthController.getUser,
 );
 router.put(
     "/updatedetails",
-    auth.protect,
+    visitorAuth.protect,
     validator.validate(visitorAuthValidator.updateUserProfile),
     visitorAuthController.updateDetails,
 );
 router.put(
     "/verifyotp",
-    auth.protect,
+    visitorAuth.protect,
     validator.validate(visitorAuthValidator.verifyPhone),
     visitorAuthController.verifyOtp,
 );

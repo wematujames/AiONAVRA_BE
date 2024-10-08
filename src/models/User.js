@@ -97,15 +97,26 @@ const userSchema = new mongoose.Schema(
             type: mongoose.Schema.Types.ObjectId,
             ref: "Token",
         },
-        permissions: {
-            type: [mongoose.Schema.Types.ObjectId],
-            ref: "Permission",
-            default: [],
-        },
         userType: {
             type: String,
-            enum: ["Visitor", "Employee", "Admin"],
+            enum: ["Employee", "Admin"],
+            default: "Employee",
             required: true,
+        },
+        employeeId: {
+            type: String,
+        },
+        inOffice: {
+            type: Boolean,
+            default: false,
+        },
+        office: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Route",
+        },
+        organization: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Organization",
         },
         createdBy: {
             type: mongoose.Schema.Types.ObjectId,

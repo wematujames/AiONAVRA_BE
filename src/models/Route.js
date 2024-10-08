@@ -1,10 +1,8 @@
 const mongoose = require("mongoose");
+const { personMethods } = require("./methods");
+const { personStatics } = require("./statics");
 
-const { permissionMethods } = require("./methods");
-const { permissionHooks } = require("./hooks");
-const { permissionStatics } = require("./statics");
-
-const permissionSchema = new mongoose.Schema(
+const routesSchema = new mongoose.Schema(
     {
         id: {
             type: mongoose.Schema.Types.ObjectId,
@@ -12,36 +10,38 @@ const permissionSchema = new mongoose.Schema(
         },
         name: {
             type: String,
-            required: [true, "Permission name is required"],
-            unique: true,
             trim: true,
-        },
-        slug: {
-            type: String,
             required: true,
-            immutable: true,
         },
         description: {
             type: String,
             trim: true,
-            unique: true,
-        },
-        routes: {
-            type: [String],
             required: true,
-            immutable: true,
         },
-        method: {
+        eta: {
             type: String,
-            immutable: true,
-            enum: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+            trim: true,
             required: true,
         },
-        active: {
-            type: Boolean,
-            default: true,
+        floor: {
+            type: String,
+            trim: true,
+            required: true,
         },
-
+        elevation: {
+            type: String,
+            trim: true,
+            required: true,
+        },
+        directions: {
+            type: String,
+            trim: true,
+            required: true,
+        },
+        occupant: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User",
+        },
         createdBy: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "User",
@@ -60,13 +60,11 @@ const permissionSchema = new mongoose.Schema(
         },
     },
     {
-        methods: permissionMethods,
-        statics: permissionStatics,
+        methods: personMethods,
+        statics: personStatics,
         timestamps: true,
     },
 );
-// Add slug to permission
-permissionSchema.pre("save", permissionHooks.genSlug);
 
 // eslint-disable-next-line new-cap
-module.exports = new mongoose.model("Permission", permissionSchema);
+module.exports = new mongoose.model("Route", routesSchema);

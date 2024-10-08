@@ -1,4 +1,4 @@
-const { authService } = require("./authService");
+const authService = require("./authService");
 const { asyncHandler } = require("../../middleware");
 const { SuccessResponse } = require("../../utils");
 

@@ -102,9 +102,10 @@ module.exports = {
         );
 
         if (!user.multiFA?.enabled) {
+            console.log();
             const jwToken = await user.getSignedJwtToken({
                 id: user.id,
-                type: "platformAuth",
+                type: "CompanyUserAuth",
             });
 
             return { multiFAEnabled: false, token: jwToken };

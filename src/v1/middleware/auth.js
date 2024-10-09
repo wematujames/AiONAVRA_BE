@@ -2,6 +2,7 @@ const asyncHandler = require("./asyncHandler");
 const { ErrorResponse } = require("../utils");
 const authService = require("../features/auth/authService");
 const revokedTokenService = require("../features/auth/revokedTokenService");
+const visitorAuthService = require("../features/visitorAuth/visitorAuthService");
 
 module.exports = {
     /* Platform user route protection */
@@ -26,15 +27,16 @@ module.exports = {
                 return next(new ErrorResponse("Unable to identify merchant", 400));
             }
 
-            const user = await authService.findById(decoded.id);
-
-            console.log("current user", user);
+            let user = await authService.findById(decoded.id);
+            if (!user) user = await visitorAuthService.findById(decoded.id);
 
             if (!user) return next(new ErrorResponse("Not authorized", 401));
+            // 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
+            // if (!user.active) return next(
+            // new ErrorResponse("User is not active. Please contact admin."));
 
-            if (!user.active) return next(new ErrorResponse("User is not active. Please contact admin."));
-
-            if (user.accountLock.active) return next(new ErrorResponse("Account locked. Please contact admin."));
+            // if (user.accountLock.active) return next(
+            // new ErrorResponse("Account locked. Please contact admin."));
 
             req.user = user;
 

@@ -20,22 +20,6 @@ module.exports = {
             trim: true,
             isEmail: { bail: true },
         },
-        phone: {
-            trim: true,
-            customSanitizer: {
-                options: (_value) => {
-                    const value = _value.replace(/\D/g, "");
-
-                    if (value.startsWith("0")) return `233${value.slice(1)}`;
-
-                    if (!value.startsWith("233")) return `233${value}`;
-
-                    return value;
-                },
-            },
-            isNumeric: { bail: true },
-            errorMessage: "Mobile is required and must be valid",
-        },
     }),
 
     update: checkSchema({

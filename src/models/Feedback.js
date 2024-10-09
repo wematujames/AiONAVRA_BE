@@ -21,6 +21,10 @@ const feedbackSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
     },
+    visitor: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Visitor",
+    },
     createdAt: {
         type: Date,
         default: Date.now,

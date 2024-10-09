@@ -9,12 +9,10 @@ router
     .route("/")
     .get(
         auth.protect,
-        // auth.authorize,
         feedbackController.advancedResult,
     )
     .post(
         auth.protect,
-        // auth.authorize,
         validator.validate(feedbackValidator.create),
         feedbackController.create,
     );
@@ -23,13 +21,11 @@ router
     .route("/:id")
     .get(
         auth.protect,
-        // auth.authorize,
         validator.validate(generalValidator.requireId),
         feedbackController.findById,
     )
     .put(
         auth.protect,
-        // auth.authorize,
         validator.validate(feedbackValidator.update),
         feedbackController.updateById,
     );

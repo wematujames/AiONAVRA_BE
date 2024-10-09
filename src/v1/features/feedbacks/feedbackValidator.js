@@ -2,39 +2,26 @@ const { checkSchema } = require("express-validator");
 
 module.exports = {
     create: checkSchema({
+        rating: {
+            trim: true,
+            isNumeric: { bail: true },
+            isInt: { options: { min: 1, max: 5 }, bail: true },
+        },
         title: {
             optional: true,
             trim: true,
-            notEmpty: { bail: true },
-            isAlpha: { bail: true },
+            isString: { bail: true, options: {} },
         },
-        fName: {
+        description: {
+            optional: true,
             trim: true,
-            notEmpty: { bail: true },
+            isString: { bail: true },
         },
-        lName: {
-            trim: true,
-            notEmpty: { bail: true },
+        user: {
+            isMongoId: { bail: true },
         },
-        email: {
-            trim: true,
-            isEmail: { bail: true },
-        },
-        phone: {
-            trim: true,
-            customSanitizer: {
-                options: (_value) => {
-                    const value = _value.replace(/\D/g, "");
-
-                    if (value.startsWith("0")) return `233${value.slice(1)}`;
-
-                    if (!value.startsWith("233")) return `233${value}`;
-
-                    return value;
-                },
-            },
-            isNumeric: { bail: true },
-            errorMessage: "Mobile is required and must be valid",
+        visitor: {
+            isMongoId: { bail: true },
         },
     }),
 
@@ -44,49 +31,21 @@ module.exports = {
             trim: true,
             isMongoId: { bail: true },
         },
+        rating: {
+            optional: true,
+            trim: true,
+            isNumeric: { bail: true },
+            isInt: { options: { min: 1, max: 5 }, bail: true },
+        },
         title: {
             optional: true,
             trim: true,
-            notEmpty: { bail: true },
-            isAlpha: { bail: true },
+            isString: { bail: true, options: {} },
         },
-        fName: {
+        description: {
             optional: true,
             trim: true,
-            notEmpty: { bail: true },
-            isAlpha: { bail: true },
-        },
-        lName: {
-            optional: true,
-            trim: true,
-            notEmpty: { bail: true },
-            isAlpha: { bail: true },
-        },
-        email: {
-            optional: true,
-            trim: true,
-            isEmail: { bail: true },
-        },
-        active: {
-            optional: true,
-            isBoolean: { bail: true },
-        },
-        phone: {
-            optional: true,
-            trim: true,
-            isMobilePhone: { bail: true },
-            customSanitizer: {
-                options: (_value) => {
-                    const value = _value.replace(/\D/g, "");
-
-                    if (value.startsWith("0")) return `233${value.slice(1)}`;
-
-                    if (!value.startsWith("233")) return `233${value}`;
-
-                    return value;
-                },
-            },
-            errorMessage: "Mobile is required and must be valid",
+            isString: { bail: true },
         },
     }),
 };

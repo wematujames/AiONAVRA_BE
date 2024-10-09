@@ -3,38 +3,34 @@ const { checkSchema } = require("express-validator");
 module.exports = {
     create: checkSchema({
         title: {
-            optional: true,
-            trim: true,
-            notEmpty: { bail: true },
-            isAlpha: { bail: true },
-        },
-        fName: {
             trim: true,
             notEmpty: { bail: true },
         },
-        lName: {
+        description: {
             trim: true,
             notEmpty: { bail: true },
         },
-        email: {
+        date: {
             trim: true,
-            isEmail: { bail: true },
+            isString: { bail: true },
+            notEmpty: { bail: true },
         },
-        phone: {
+        duration: {
             trim: true,
-            customSanitizer: {
-                options: (_value) => {
-                    const value = _value.replace(/\D/g, "");
-
-                    if (value.startsWith("0")) return `233${value.slice(1)}`;
-
-                    if (!value.startsWith("233")) return `233${value}`;
-
-                    return value;
-                },
-            },
             isNumeric: { bail: true },
-            errorMessage: "Mobile is required and must be valid",
+        },
+        status: {
+            trim: true,
+            default: "pending",
+            isIn: { options: ["pending"] },
+        },
+        employee: {
+            trim: true,
+            isMongoId: { bail: true },
+        },
+        visitor: {
+            trim: true,
+            isMongoId: { bail: true },
         },
     }),
 
@@ -48,45 +44,36 @@ module.exports = {
             optional: true,
             trim: true,
             notEmpty: { bail: true },
-            isAlpha: { bail: true },
         },
-        fName: {
+        description: {
             optional: true,
             trim: true,
             notEmpty: { bail: true },
-            isAlpha: { bail: true },
         },
-        lName: {
+        date: {
             optional: true,
             trim: true,
+            isString: { bail: true },
             notEmpty: { bail: true },
-            isAlpha: { bail: true },
         },
-        email: {
+        duration: {
             optional: true,
             trim: true,
-            isEmail: { bail: true },
+            isNumeric: { bail: true },
         },
-        active: {
-            optional: true,
-            isBoolean: { bail: true },
-        },
-        phone: {
+        status: {
             optional: true,
             trim: true,
-            isMobilePhone: { bail: true },
-            customSanitizer: {
-                options: (_value) => {
-                    const value = _value.replace(/\D/g, "");
-
-                    if (value.startsWith("0")) return `233${value.slice(1)}`;
-
-                    if (!value.startsWith("233")) return `233${value}`;
-
-                    return value;
-                },
-            },
-            errorMessage: "Mobile is required and must be valid",
+            default: "pending",
+            isIn: { options: ["pending", "canceled", "confirmed"] },
+        },
+        employee: {
+            trim: true,
+            isMongoId: { bail: true },
+        },
+        visitor: {
+            trim: true,
+            isMongoId: { bail: true },
         },
     }),
 };

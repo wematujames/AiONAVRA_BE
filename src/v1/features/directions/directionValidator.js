@@ -2,75 +2,81 @@ const { checkSchema } = require("express-validator");
 
 module.exports = {
     create: checkSchema({
-        title: {
-            optional: true,
-            trim: true,
-            notEmpty: { bail: true },
-            isAlpha: { bail: true },
-        },
-        fName: {
+        name: {
             trim: true,
             notEmpty: { bail: true },
         },
-        lName: {
+        description: {
             trim: true,
             notEmpty: { bail: true },
         },
-        email: {
+        floor: {
             trim: true,
-            isEmail: { bail: true },
+            isNumeric: { bail: true },
+        },
+        elevation: {
+            trim: true,
+            isIn: { options: [["Stairs", "Elevator", "None"]] },
+        },
+        eta: {
+            trim: true,
+            isNumeric: { bail: true },
+        },
+        occupant: {
+            isMongoId: { bail: true },
+        },
+        directions: {
+            trim: true,
+            notEmpty: { bail: true },
+        },
+        createdBy: {
+            isMongoId: { bail: true },
         },
     }),
 
     update: checkSchema({
         id: {
             in: ["params"],
+            isMongoId: { bail: true },
             trim: true,
+        },
+        name: {
+            optional: true,
+            trim: true,
+            notEmpty: { bail: true },
+        },
+        description: {
+            optional: true,
+            trim: true,
+            notEmpty: { bail: true },
+        },
+        floor: {
+            optional: true,
+            trim: true,
+            isNumeric: { bail: true },
+        },
+        elevation: {
+            optional: true,
+            trim: true,
+            isIn: { options: [["Stairs", "Elevator", "None"]] },
+        },
+        eta: {
+            optional: true,
+            trim: true,
+            isNumeric: { bail: true },
+        },
+        occupant: {
+            optional: true,
             isMongoId: { bail: true },
         },
-        title: {
+        directions: {
             optional: true,
             trim: true,
             notEmpty: { bail: true },
-            isAlpha: { bail: true },
         },
-        fName: {
+        createdBy: {
             optional: true,
-            trim: true,
-            notEmpty: { bail: true },
-            isAlpha: { bail: true },
-        },
-        lName: {
-            optional: true,
-            trim: true,
-            notEmpty: { bail: true },
-            isAlpha: { bail: true },
-        },
-        email: {
-            optional: true,
-            trim: true,
-            isEmail: { bail: true },
-        },
-        active: {
-            optional: true,
-            isBoolean: { bail: true },
-        },
-        phone: {
-            optional: true,
-            trim: true,
-            isMobilePhone: { bail: true },
-            customSanitizer: {
-                options: (_value) => {
-                    const value = _value.replace(/\D/g, "");
-
-                    if (value.startsWith("0")) return `233${value.slice(1)}`;
-
-                    if (!value.startsWith("233")) return `233${value}`;
-
-                    return value;
-                },
-            },
-            errorMessage: "Mobile is required and must be valid",
+            isMongoId: { bail: true },
         },
     }),
 };

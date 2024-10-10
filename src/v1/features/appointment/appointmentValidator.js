@@ -65,13 +65,15 @@ module.exports = {
             optional: true,
             trim: true,
             default: "pending",
-            isIn: { options: ["pending", "canceled", "confirmed"] },
+            isIn: { options: [["pending", "canceled", "confirmed"]] },
         },
         employee: {
+            optional: true,
             trim: true,
             isMongoId: { bail: true },
         },
         visitor: {
+            optional: true,
             trim: true,
             isMongoId: { bail: true },
         },

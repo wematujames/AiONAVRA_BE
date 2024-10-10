@@ -110,10 +110,6 @@ const userSchema = new mongoose.Schema(
             type: Boolean,
             default: false,
         },
-        office: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Route",
-        },
         organization: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Organization",
@@ -139,8 +135,17 @@ const userSchema = new mongoose.Schema(
         methods: userMethods,
         statics: userStatics,
         timestamps: true,
+        toJSON: { virtuals: true },
+        toObject: { virtuals: true },
     },
 );
+
+userSchema.virtual("office", {
+    ref: "Route",
+    localField: "_id",
+    foreignField: "occupant",
+    justOne: true,
+});
 
 userSchema.pre("save", userHooks.preSaveActions);
 

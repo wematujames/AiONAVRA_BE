@@ -16,9 +16,22 @@ module.exports = {
             trim: true,
             notEmpty: { bail: true },
         },
+        active: {
+            default: true,
+            toBoolean: true,
+            isBoolean: { bail: true },
+        },
         email: {
             trim: true,
             isEmail: { bail: true },
+        },
+        userType: {
+            default: "Employee",
+            isIn: { options: [["Admin", "Employee"]], bail: true },
+        },
+        employeeId: {
+            optional: true,
+            notEmpty: { bail: true },
         },
         phone: {
             trim: true,
@@ -35,6 +48,9 @@ module.exports = {
             },
             isNumeric: { bail: true },
             errorMessage: "Mobile is required and must be valid",
+        },
+        createdBy: {
+            isMongoId: { bail: true },
         },
     }),
 
@@ -68,6 +84,14 @@ module.exports = {
             isEmail: { bail: true },
         },
         active: {
+            optional: true,
+            isBoolean: { bail: true },
+        },
+        userType: {
+            optional: true,
+            isBoolean: { bail: true },
+        },
+        employeeId: {
             optional: true,
             isBoolean: { bail: true },
         },

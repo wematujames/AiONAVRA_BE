@@ -46,4 +46,4 @@ const sendMail = async (to, subject, view, data) => {
     }
 };
 
-module.exports = sendMail;
+module.exports = { sendMail };

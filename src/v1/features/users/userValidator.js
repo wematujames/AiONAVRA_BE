@@ -88,17 +88,15 @@ module.exports = {
             isBoolean: { bail: true },
         },
         userType: {
-            optional: true,
-            isBoolean: { bail: true },
+            default: "Employee",
+            isIn: { options: [["Admin", "Employee"]], bail: true },
         },
         employeeId: {
             optional: true,
-            isBoolean: { bail: true },
+            notEmpty: { bail: true },
         },
         phone: {
-            optional: true,
             trim: true,
-            isMobilePhone: { bail: true },
             customSanitizer: {
                 options: (_value) => {
                     const value = _value.replace(/\D/g, "");
@@ -110,7 +108,11 @@ module.exports = {
                     return value;
                 },
             },
+            isNumeric: { bail: true },
             errorMessage: "Mobile is required and must be valid",
+        },
+        createdBy: {
+            isMongoId: { bail: true },
         },
     }),
 };

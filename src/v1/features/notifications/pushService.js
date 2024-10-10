@@ -14,7 +14,7 @@ async function sendPushNotification({
             "Accept-encoding": "gzip, deflate",
             "Content-Type": "application/json",
         },
-        body: JSON.stringify(message),
+        data: JSON.stringify(message),
     });
 }
 

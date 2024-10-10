@@ -62,6 +62,15 @@ module.exports = {
         return res.json(new SuccessResponse("Phone Verified"));
     }),
 
+    // @desc            //Update user details
+    // @route           //POST /api/auth/user
+    // @access          //Private
+    savePushToken: asyncHandler(async (req, res, next) => {
+        await authService.savePushtoken(req.body.token, req.user);
+
+        return res.json(new SuccessResponse("Push token saved!"));
+    }),
+
     // @desc            //Log user out
     // @route           //POST /api/auth/logout
     // @access          //Private

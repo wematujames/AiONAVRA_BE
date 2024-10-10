@@ -30,6 +30,15 @@ module.exports = {
         return res.json(new SuccessResponse("Success", { loginToken: token }));
     }),
 
+    // @desc            //Update user details
+    // @route           //POST /api/auth/user
+    // @access          //Private
+    savePushToken: asyncHandler(async (req, res, next) => {
+        await authService.savePushtoken(req.body.token, req.user);
+
+        return res.json(new SuccessResponse("Push token saved!"));
+    }),
+
     // @desc            //login user
     // @route           //POST /api/auth/login
     // @access          //Public

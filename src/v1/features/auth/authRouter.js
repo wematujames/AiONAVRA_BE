@@ -45,6 +45,11 @@ router.get(
     auth.protect,
     authController.getUser,
 );
+router.post(
+    "/notifications/savepushtoken",
+    auth.protect,
+    authController.savePushToken,
+);
 router.put(
     "/user/updatedetails",
     auth.protect,

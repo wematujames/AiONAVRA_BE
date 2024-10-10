@@ -40,6 +40,10 @@ const visitorSchema = new mongoose.Schema({
         enum: ["Visitor"],
         default: "Visitor",
     },
+    tokens: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Token",
+    },
     createdAt: {
         type: Date,
         default: Date.now,

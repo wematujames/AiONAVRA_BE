@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const smsQueue = require("../../queues/smsQueue");
 const { ErrorResponse } = require("../../utils");
 const baseService = require("../common/baseService");
-const { Visitor, RevokedToken } = require("../../../models");
+const { Visitor, RevokedToken, Token } = require("../../../models");
 
 module.exports = {
     ...baseService(Visitor),
@@ -15,10 +15,17 @@ module.exports = {
      */
     async login(phone) {
         let isNew = false;
+
         let visitor = await Visitor.findOne({ phone });
 
         if (!visitor) {
             visitor = await Visitor.create({ phone });
+
+            const tokens = await Token.create({ visitor: visitor.id });
+
+            visitor.tokens = tokens.id;
+            await visitor.save();
+
             isNew = true;
         }
 
@@ -65,6 +72,14 @@ module.exports = {
         const otpCode = await visitor.genOTP();
 
         return this.dispatchOtp(visitor.phone, otpCode);
+    },
+
+    /**
+     * @param {object} data Login email and password
+     * @returns {object} token, cookieOptions and success login succes msg
+     */
+    async savePushtoken(token, visitor) {
+        await Token.updateOne({ _id: visitor.tokens }, { pushToken: token });
     },
 
     /**

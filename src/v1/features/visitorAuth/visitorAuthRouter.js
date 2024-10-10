@@ -28,6 +28,11 @@ router.get(
     visitorAuth.protect,
     visitorAuthController.getUser,
 );
+router.post(
+    "/notifications/savepushtoken",
+    visitorAuth.protect,
+    visitorAuthController.savePushToken,
+);
 router.put(
     "/updatedetails",
     visitorAuth.protect,

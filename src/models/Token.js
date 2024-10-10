@@ -6,9 +6,9 @@ const userSchema = new mongoose.Schema(
             token: String,
             expire: Date,
         },
-        txn: {
-            token: String,
-            expire: Date,
+        pushToken: {
+            type: String,
+            default: "",
         },
         webTxn: {
             token: String,
@@ -29,9 +29,9 @@ const userSchema = new mongoose.Schema(
             type: mongoose.Schema.Types.ObjectId,
             ref: "User",
         },
-        merchant: {
+        visitor: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "Merchant",
+            ref: "Visitor",
         },
         createdBy: {
             type: mongoose.Schema.Types.ObjectId,

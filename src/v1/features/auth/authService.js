@@ -102,7 +102,6 @@ module.exports = {
         );
 
         if (!user.multiFA?.enabled) {
-            console.log();
             const jwToken = await user.getSignedJwtToken({
                 id: user.id,
                 type: "CompanyUserAuth",
@@ -176,6 +175,14 @@ module.exports = {
         });
 
         return user.getLoginToken();
+    },
+
+    /**
+     * @param {object} data Login email and password
+     * @returns {object} token, cookieOptions and success login succes msg
+     */
+    async savePushtoken(token, user) {
+        await Token.updateOne({ _id: user.tokens }, { pushToken: token });
     },
 
     /**

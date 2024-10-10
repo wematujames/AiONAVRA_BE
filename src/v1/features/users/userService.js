@@ -25,7 +25,6 @@ module.exports = {
         user.tokens = tokens.id;
         await user.save();
 
-        console.log(user);
         emailQueue.dispatch(
             user.email,
             "Welcome to AiONAVRA",

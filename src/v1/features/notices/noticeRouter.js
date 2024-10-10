@@ -32,6 +32,11 @@ router
         // auth.authorize,
         validator.validate(noticeValidator.update),
         noticeController.updateById,
+    )
+    .delete(
+        auth.protect,
+        validator.validate(generalValidator.requireId),
+        noticeController.deleteById,
     );
 
 module.exports = router;

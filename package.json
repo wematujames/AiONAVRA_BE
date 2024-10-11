@@ -1,18 +1,14 @@
 {
-	"name": "nerasika",
+	"name": "aionavra",
 	"version": "0.1.0",
-	"description": "Nera Payment",
+	"description": "AiONAVRA",
 	"main": "index.js",
 	"scripts": {
-		"start": "cross-env NODE_ENV=production pm2 start ./src/index.js -i 0 --name nerasika_prod --namespace=production",
-		"dev": "cross-env NODE_ENV=development pm2 start ./src/index.js -i 0 --name nerasika_dev --namespace=development",
+		"start": "cross-env NODE_ENV=production pm2 start ./src/index.js -i 0 --name aionavra --namespace=production",
+		"dev": "cross-env NODE_ENV=development pm2 start ./src/index.js -i 0 --name aionavra_dev --namespace=development",
 		"local": "cross-env NODE_ENV=local nodemon ./src/index.js"
 	},
-	"keywords": [
-		"nerasika",
-		"nerapay",
-		"payment gateway"
-	],
+	"keywords": ["AiONAVRA"],
 	"author": "Nerasol Limited",
 	"license": "ISC",
 	"dependencies": {

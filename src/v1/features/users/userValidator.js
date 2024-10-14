@@ -25,7 +25,7 @@ module.exports = {
             trim: true,
             isEmail: { bail: true },
         },
-        jotTitle: {
+        jobTitle: {
             trim: true,
             notEmpty: { bail: true },
         },

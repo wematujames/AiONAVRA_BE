@@ -25,6 +25,10 @@ module.exports = {
             trim: true,
             isEmail: { bail: true },
         },
+        jotTitle: {
+            trim: true,
+            notEmpty: { bail: true },
+        },
         userType: {
             default: "Employee",
             isIn: { options: [["Admin", "Employee"]], bail: true },
@@ -70,7 +74,6 @@ module.exports = {
             optional: true,
             trim: true,
             notEmpty: { bail: true },
-            isAlpha: { bail: true },
         },
         lName: {
             optional: true,
@@ -86,6 +89,11 @@ module.exports = {
         active: {
             optional: true,
             isBoolean: { bail: true },
+        },
+        jobTitle: {
+            optional: true,
+            trim: true,
+            notEmpty: { bail: true },
         },
         userType: {
             default: "Employee",

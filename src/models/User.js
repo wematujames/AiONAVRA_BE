@@ -104,6 +104,11 @@ const userSchema = new mongoose.Schema(
             required: true,
         },
         employeeId: {
+            trim: true,
+            type: String,
+        },
+        jobTitle: {
+            trim: true,
             type: String,
         },
         inOffice: {

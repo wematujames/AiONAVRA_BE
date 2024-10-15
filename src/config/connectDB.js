@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { logger } = require("../v1/utils");
 
 mongoose.set("strictQuery", false);
 
@@ -8,10 +9,10 @@ const { mongoURI } = require("./app").database;
 module.exports = async () => {
     try {
         const conn = await mongoose.connect(mongoURI);
-        console.info(`DB connected: ${conn.connection.host}`);
+        logger.info(`DB connected: ${conn.connection.host}`);
         return conn;
     } catch (error) {
-        console.info("DB connection error", error);
+        logger.info("DB connection error", error);
         return null;
     }
 };

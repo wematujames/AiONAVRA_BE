@@ -8,14 +8,14 @@ const hpp = require("hpp");
 const xssClean = require("xss-clean");
 
 const { application } = require("./config/app");
+const { logger } = require("./v1/utils");
 
 // const logger = require("./utils/Logger");
 
 const app = express();
-require("./config/connectDB")();
 
-// require("./v1/jobs")();
-// require("./v1/config/redisClient");
+require("./config/connectDB")();
+require("./v1/jobs")();
 
 app.set("trust proxy", true);
 app.use(express.urlencoded({ extended: true }));
@@ -32,6 +32,5 @@ app.use("/api/v1", require("./v1/routes"));
 
 app.set("port", Number(application.port));
 app.listen(app.get("port") || application.port, () => {
-    console.log(`App running on ${application.port}`);
-    // logger.info(`Gh running on ${application.port} in ${application.env} mode!`);
+    logger.info(`App running on ${application.port} in ${application.env} mode!`);
 });

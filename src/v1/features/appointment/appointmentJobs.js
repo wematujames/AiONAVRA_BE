@@ -11,6 +11,7 @@ module.exports = {
      */
     async notifyAppointment() {
         const appointments = await Appointment.find({
+            status: "confirmed",
             date: {
                 $gte: moment().toDate(),
                 $lte: moment().add(5, "minutes").toDate(),
@@ -28,7 +29,7 @@ module.exports = {
                     title: `Upcoming appointment with ${employee.fName} `,
                     body: `${visitor.fName}, your scheduled appointment with `
                         + `${employee.fName} is due in 5 minutes.`,
-                    data: { key: "val" },
+                    data: { type: "appointment-reminder", appointmentId: apt._id },
                 });
             }
 
@@ -38,7 +39,7 @@ module.exports = {
                     title: `Upcoming appointment with ${visitor.fName} `,
                     body: `${employee.fName}, your scheduled appointment with `
                         + `${visitor.fName} is due in 5 minutes.`,
-                    data: { key: "val" },
+                    data: { type: "appointment-reminder", appointmentId: apt._id },
                 });
             }
         });

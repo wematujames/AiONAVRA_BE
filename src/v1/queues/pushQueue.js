@@ -3,7 +3,7 @@ const { redis, application } = require("../../config/app");
 const { logger } = require("../utils");
 const { pushService } = require("../features/notifications");
 
-const queueName = `${application.queuePrefix}-nerasika-sms-queue`;
+const queueName = `${application.queuePrefix}-nerasika-push-queue`;
 
 const pushQueue = new Bull(queueName, {
     redis: {

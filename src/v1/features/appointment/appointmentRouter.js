@@ -19,6 +19,14 @@ router
         appointmentController.create,
     );
 
+router.put(
+    "/employee/approval/:id",
+    auth.protect,
+    // auth.authorize,
+    validator.validate(appointmentValidator.update),
+    appointmentController.employeeSetAppointmentStatus,
+);
+
 router
     .route("/:id")
     .get(
@@ -26,8 +34,7 @@ router
         // auth.authorize,
         validator.validate(generalValidator.requireId),
         appointmentController.findById,
-    )
-    .put(
+    ).put(
         auth.protect,
         // auth.authorize,
         validator.validate(appointmentValidator.update),

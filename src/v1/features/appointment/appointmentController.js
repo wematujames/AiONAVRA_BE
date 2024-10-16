@@ -25,4 +25,20 @@ module.exports = {
 
         return res.json(new SuccessResponse("Found Resource", resource));
     }),
+
+    // @Description             //Update entity resource by id
+    // @route                   // PUT api/{{resourceName}}/:id
+    // @auth                    // Required
+    employeeSetAppointmentStatus: asyncHandler(async (req, res, next) => {
+        let resource = await appointmentService.findById(req.params.id, [], req.user);
+
+        if (!resource) return next(new ErrorResponse("Resource does not exist", 404));
+
+        resource = await appointmentService.employeeSetAppointmentStatus(
+            { _id: req.params.id },
+            req.body,
+        );
+
+        return res.json(new SuccessResponse("Successfully updated resource", resource));
+    }),
 };

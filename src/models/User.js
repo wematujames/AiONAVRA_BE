@@ -113,7 +113,7 @@ const userSchema = new mongoose.Schema(
         },
         inOffice: {
             type: Boolean,
-            default: false,
+            default: true,
         },
         organization: {
             type: mongoose.Schema.Types.ObjectId,

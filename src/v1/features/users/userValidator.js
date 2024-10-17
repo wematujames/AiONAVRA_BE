@@ -90,12 +90,17 @@ module.exports = {
             optional: true,
             isBoolean: { bail: true },
         },
+        inOffice: {
+            optional: true,
+            isBoolean: { bail: true },
+        },
         jobTitle: {
             optional: true,
             trim: true,
             notEmpty: { bail: true },
         },
         userType: {
+            optional: true,
             default: "Employee",
             isIn: { options: [["Admin", "Employee"]], bail: true },
         },
@@ -104,6 +109,7 @@ module.exports = {
             notEmpty: { bail: true },
         },
         phone: {
+            optional: true,
             trim: true,
             customSanitizer: {
                 options: (_value) => {
@@ -120,6 +126,7 @@ module.exports = {
             errorMessage: "Mobile is required and must be valid",
         },
         createdBy: {
+            optional: true,
             isMongoId: { bail: true },
         },
     }),

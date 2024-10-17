@@ -18,9 +18,11 @@ module.exports = {
             isString: { bail: true },
         },
         user: {
+            optional: true,
             isMongoId: { bail: true },
         },
         visitor: {
+            optional: true,
             isMongoId: { bail: true },
         },
     }),

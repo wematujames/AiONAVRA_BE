@@ -10,7 +10,7 @@ module.exports = {
     // @route                   // GET api/{{resourceName}}
     // @auth                    // Required
     advancedResult: asyncHandler(async (req, res, next) => {
-        const result = await feedbackService.advancedResult(req.query, ["user"]);
+        const result = await feedbackService.advancedResult(req.query, ["user", "visitor"]);
 
         return res.json(new SuccessResponse("Success", result.data, result.meta));
     }),

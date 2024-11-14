@@ -11,7 +11,9 @@ module.exports = async function getGroqChatCompletion(messages) {
                 role: "user",
                 content: `Here is some information I want you to remember about a certain company.\n\n${
                     companyProfile
-                }\n\n Answer the following questions based on the comany's profile and improvise when needed.`,
+                }\n\n Answer the following questions based on the comany's profile and improvise when needed.`
+                + "Keep answers very short and concise, preferably between 30 to 40 words per answer. "
+                + "And don't don't answer questions outside this the  compony's profile",
             },
             {
                 role: "assistant",

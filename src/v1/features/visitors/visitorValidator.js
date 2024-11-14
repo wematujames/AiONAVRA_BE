@@ -10,10 +10,12 @@ module.exports = {
         },
         fName: {
             trim: true,
+            default: "Visi",
             notEmpty: { bail: true },
         },
         lName: {
             trim: true,
+            default: "tor",
             notEmpty: { bail: true },
         },
         email: {

@@ -19,4 +19,16 @@ module.exports = {
         username: process.env.REDIS_USERNAME || "",
         password: process.env.REDIS_PASSWORD || "",
     },
+    sms: {
+        keys: {
+            apiKeyV1: process.env.SMS_API_KEY_v1,
+            apiKeyV2: process.env.SMS_API_KEY_v2,
+        },
+        urls: {
+            smsUrlV1: process.env.SMS_URL,
+        },
+        senderIds: {
+            pureCo: process.env.SMS_SENDER_ID,
+        },
+    },
 };

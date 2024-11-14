@@ -25,4 +25,17 @@ module.exports = {
 
         return res.json(new SuccessResponse("Found Resource", resource));
     }),
+
+    // @Description             // Find entity resource by id
+    // @route                   // GET api/{{resourceName}}/:id
+    // @auth                    // Required
+    sendRouteToUser: asyncHandler(async (req, res, next) => {
+        const resource = await directionService.findById(req.body.routeId);
+
+        if (!resource) return next(new ErrorResponse("Route not found", 404));
+
+        await directionService.sendRouteToUser(resource, req.user);
+
+        return res.json(new SuccessResponse("Success"));
+    }),
 };

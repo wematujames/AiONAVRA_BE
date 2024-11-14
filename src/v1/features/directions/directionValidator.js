@@ -79,4 +79,12 @@ module.exports = {
             isMongoId: { bail: true },
         },
     }),
+
+    sendRouteToUser: checkSchema({
+        routeId: {
+            in: ["body"],
+            trim: true,
+            isMongoId: { bail: true },
+        },
+    }),
 };

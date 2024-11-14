@@ -31,7 +31,7 @@ module.exports = {
 
         const otpCode = await visitor.genOTP();
 
-        this.dispatchOtp(visitor.phone, otpCode);
+        this.dispatchOtp(visitor.phone, otpCode.code);
 
         return { isNew };
     },
@@ -70,8 +70,9 @@ module.exports = {
         if (!visitor) throw new ErrorResponse("Visitor not found", 400);
 
         const otpCode = await visitor.genOTP();
+        console.log("otp code", otpCode.code);
 
-        return this.dispatchOtp(visitor.phone, otpCode);
+        return this.dispatchOtp(visitor.phone, otpCode.code);
     },
 
     /**
@@ -87,6 +88,8 @@ module.exports = {
      * @returns {object} token, cookieOptions and success login succes msg
      */
     async dispatchOtp(phone, otpCode) {
+        console.log(phone, otpCode);
+
         await smsQueue.dispatch({
             to: phone,
             message: `Your OTP code is: ${otpCode}. Expires in 5 minutes.`,

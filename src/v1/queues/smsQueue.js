@@ -1,9 +1,9 @@
 const Bull = require("bull");
-const { redis, application } = require("../../config/app");
+const { redis } = require("../../config/app");
 const { logger } = require("../utils");
 const { smsService } = require("../features/notifications");
 
-const queueName = `${application.queuePrefix}-nerasika-sms-queue`;
+const queueName = "aionavra-sms-queue";
 
 const smsQueue = new Bull(queueName, {
     redis: {

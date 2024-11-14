@@ -20,6 +20,14 @@ router
     );
 
 router
+    .route("/sendroutetouser").post(
+        auth.protect,
+        // auth.authorize,
+        validator.validate(directionValidator.sendRouteToUser),
+        directionController.sendRouteToUser,
+    );
+
+router
     .route("/:id")
     .get(
         auth.protect,
